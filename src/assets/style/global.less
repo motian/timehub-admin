@@ -1,0 +1,223 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-size: 14px;
+  background-color: var(--color-bg-1);
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+}
+
+.echarts-tooltip-diy {
+  background: linear-gradient(
+    304.17deg,
+    rgba(253, 254, 255, 0.6) -6.04%,
+    rgba(244, 247, 252, 0.6) 85.2%
+  ) !important;
+  border: none !important;
+
+  /* Note: backdrop-filter has minimal browser support */
+
+  border-radius: 6px !important;
+  backdrop-filter: blur(10px) !important;
+
+  .content-panel {
+    display: flex;
+    justify-content: space-between;
+    width: 164px;
+    height: 32px;
+    margin-bottom: 4px;
+    padding: 0 9px;
+    line-height: 32px;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 4px;
+    box-shadow: 6px 0 20px rgba(34, 87, 188, 0.1);
+  }
+
+  .tooltip-title {
+    margin: 0 0 10px 0;
+  }
+
+  p {
+    margin: 0;
+  }
+
+  .tooltip-title,
+  .tooltip-value {
+    display: flex;
+    align-items: center;
+    color: #1d2129;
+    font-weight: bold;
+    font-size: 13px;
+    line-height: 15px;
+    text-align: right;
+  }
+
+  .tooltip-item-icon {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    margin-right: 8px;
+    border-radius: 50%;
+  }
+}
+
+.general-card {
+  border: none;
+  border-radius: 4px;
+
+  & > .arco-card-header {
+    height: auto;
+    padding: 20px;
+    border: none;
+  }
+
+  & > .arco-card-body {
+    padding: 0 20px 20px 20px;
+  }
+}
+
+.split-line {
+  border-color: rgb(var(--gray-2));
+}
+
+.arco-table-cell {
+  .circle {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    margin-right: 4px;
+    background-color: rgb(var(--blue-6));
+    border-radius: 50%;
+
+    &.pass {
+      background-color: rgb(var(--green-6));
+    }
+  }
+}
+
+.h-tb-btn {
+  margin-left: -15px;
+}
+
+.h-tb-btn-mini {
+  margin-left: -12px;
+}
+
+.h-tb-th-tooltip {
+  padding-bottom: 1px;
+  border-bottom: 1px dashed #86909c;
+  cursor: pointer;
+  transition: border-bottom 0.2s ease-in-out;
+}
+
+.h-tb-th-tooltip:hover {
+  color: @primary-6;
+  border-bottom: 1px solid #86909c;
+}
+
+.h-top-tabs {
+  position: fixed;
+  top: 60px;
+  z-index: 1000;
+  width: 100%;
+  height: 45px;
+  margin-left: 1px;
+  background-color: white;
+}
+
+.h-pointer {
+  cursor: pointer !important;
+
+  &:hover {
+    color: @primary-6;
+  }
+}
+
+.h-link {
+  color: @link-6;
+  cursor: pointer !important;
+}
+
+.h-bold {
+  font-weight: bold;
+}
+
+.h-danger {
+  color: @danger-6 !important;
+}
+
+.h-success {
+  color: @success-6;
+}
+
+.h-warning {
+  color: @warning-6;
+}
+
+.h-color-text-1 {
+  color: @color-text-1;
+}
+
+.h-color-text-2 {
+  color: @color-text-2;
+}
+
+.h-color-text-3 {
+  color: @color-text-3;
+}
+
+.h-color-danger {
+  color: @danger-6;
+}
+
+.h-color-primary {
+  color: @primary-6;
+}
+
+.h-attr-group {
+  width: 100%;
+  font-size: 13px;
+
+  .h-attr-item {
+    display: flex;
+
+    .label {
+      display: inline-block;
+      flex-shrink: 0;
+      width: 80px;
+      color: @color-text-3;
+    }
+
+    .value {
+      color: @color-text-1;
+    }
+  }
+}
+
+.h-block {
+  display: block;
+}
+
+.h-ellipsis {
+  display: -webkit-box;
+  margin: 5px 0;
+  // css 实现两行或多行文本溢出显示省略号
+  // https://segmentfault.com/a/1190000022474073
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 2; //多行在这里修改数字即可
+
+  /* autoprefixer: ignore next */
+  -webkit-box-orient: vertical;
+}
+
+@import './margin.less';
+@import './flex.less';
+@import './wang-editor.less';

@@ -1,0 +1,68 @@
+.for-loop(@index) when (@index >= 0) {
+  // ! margin
+
+  .wm-l-@{index} {
+    margin-left: @index * 1px !important;
+  }
+
+  .wm-r-@{index} {
+    margin-right: @index * 1px !important;
+  }
+
+  .wm-t-@{index} {
+    margin-top: @index * 1px !important;
+  }
+
+  .wm-b-@{index} {
+    margin-bottom: @index * 1px !important;
+  }
+
+  .wm-@{index} {
+    margin: @index * 1px !important;
+  }
+
+  .wm-lr-@{index} {
+    margin-right: @index * 1px !important;
+    margin-left: @index * 1px !important;
+  }
+
+  .wm-tb-@{index} {
+    margin-top: @index * 1px !important;
+    margin-bottom: @index * 1px !important;
+  }
+
+  // ! padding
+
+  .wp-l-@{index} {
+    padding-left: @index * 1px !important;
+  }
+
+  .wp-r-@{index} {
+    padding-right: @index * 1px !important;
+  }
+
+  .wp-t-@{index} {
+    padding-top: @index * 1px !important;
+  }
+
+  .wp-b-@{index} {
+    padding-bottom: @index * 1px !important;
+  }
+
+  .wp-@{index} {
+    padding: @index * 1px !important;
+  }
+
+  .wp-tb-@{index} {
+    padding-top: @index * 1px !important;
+    padding-bottom: @index * 1px !important;
+  }
+
+  .wp-lr-@{index} {
+    padding-right: @index * 1px !important;
+    padding-left: @index * 1px !important;
+  }
+
+  .for-loop(@index - 1); /* the next iteration's call - final-expression */
+}
+.for-loop(500);
