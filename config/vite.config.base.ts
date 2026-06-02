@@ -6,7 +6,7 @@ import svgLoader from 'vite-svg-loader';
 import configArcoStyleImportPlugin from './plugin/arcoStyleImport';
 
 /** 纯对象，供 mergeConfig；勿在此包 defineConfig 回调，否则与子配置 merge 时 alias 等会丢失 */
-const APP_NAME = '河图云聚数通';
+const APP_NAME = '拾光巷漫集';
 const APP_ICON = 'https://cdn.hetu.yun/FqjFicouHfeeDl2JkifbwCgkdONQ';
 const STATIC_DOMAIN = 'cdn.hetu.yun';
 

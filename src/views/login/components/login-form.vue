@@ -1,7 +1,7 @@
 <template>
   <div class="login-form-wrapper">
-    <div class="login-form-title">河图云聚数通</div>
-    <div class="login-form-sub-title">河图云聚数通</div>
+    <div class="login-form-title">拾光巷漫集</div>
+    <div class="login-form-sub-title">拾光巷漫集</div>
     <div class="login-form-error-msg">{{ errorMessage }}</div>
     <a-form
       ref="loginForm"
@@ -131,7 +131,7 @@
         await userStore.login(userInfo as LoginData);
         const { redirect, ...othersQuery } = router.currentRoute.value.query;
         await userStore.info();
-        router.push({ 
+        router.push({
           name: (redirect as string) || 'SettingAdmin',
           query: {
             ...othersQuery,

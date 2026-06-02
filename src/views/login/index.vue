@@ -22,8 +22,8 @@
     <div class="content">
       <div class="content-inner">
         <div class="login-form-wrapper">
-          <div class="login-form-title">河图云 • 聚数通</div>
-          <div class="login-form-sub-title">一站式智能营销聚数中台</div>
+          <div class="login-form-title">拾光巷漫集</div>
+          <div class="login-form-sub-title"></div>
           <a-form
             ref="loginForm"
             :model="userInfo"
@@ -189,7 +189,7 @@
             ...othersQuery,
           },
         });
-        Message.success('欢迎使用河图云！');
+        Message.success('欢迎使用拾光巷漫集！');
         const { rememberPassword } = loginConfig.value;
         const { mobile, password } = values;
         // 实际生产环境需要进行加密存储。

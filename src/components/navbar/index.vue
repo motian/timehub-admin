@@ -4,9 +4,12 @@
       <a-space>
         <!-- <img alt="logo" src="https://cdn.hetu.yun/assets/hetu-marketing-hub.png" /> -->
         <a-space>
-          <img style="width: 30px; height: 30px;" src="https://cdn.hetu.yun/assets/hetu-logo.png" />
-          <h2 style="font-size: 20px; font-weight: bold;">河图云 • 聚数通</h2>
-         </a-space>
+          <img
+            style="width: 30px; height: 30px"
+            src="https://cdn.hetu.yun/assets/hetu-logo.png"
+          />
+          <h2 style="font-weight: bold; font-size: 20px">拾光巷漫集</h2>
+        </a-space>
         <icon-menu-fold
           v-if="appStore.device === 'mobile'"
           style="font-size: 22px; cursor: pointer"

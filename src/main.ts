@@ -16,7 +16,7 @@ import '@/api/interceptor';
 window.staticDomain = 'cdn.hetu.yun';
 window.uploadDomain = 'up-z2.qiniup.com';
 window.appWebsite = 'robot.hetu.yun';
-window.appName = '河图云聚数通';
+window.appName = '拾光巷漫集';
 window.appIcon = 'https://cdn.hetu.yun/FqjFicouHfeeDl2JkifbwCgkdONQ';
 
 const app = createApp(App);

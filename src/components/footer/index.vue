@@ -6,7 +6,7 @@
 
 <template>
   <a-layout-footer class="footer">
-    <span>河图云 · 版权所有©2026 广州市渐丰网络科技有限公司</span>
+    <span>拾光巷漫集 · 版权所有©2026 杭州益扬顺起科技有限公司</span>
     <span class="wm-lr-5">|</span>
     <span class="h-pointer" @click="onOpenIcp()">粤ICP备2023156463号-7</span>
   </a-layout-footer>

@@ -4,22 +4,22 @@ import axios from 'axios';
 
 export default {
   GetList(params: ArgPage) {
-    return axios.get(`${BASE_URL.IAM}/admin-role-config/list`, { params });
+    return axios.get(`${BASE_URL.ADMIN}/admin-role-config/list`, { params });
   },
 
   Create(data: MAdminRoleConig) {
-    return axios.post(`${BASE_URL.IAM}/admin-role-config/create`, data);
+    return axios.post(`${BASE_URL.ADMIN}/admin-role-config/create`, data);
   },
 
   Update(data: MAdminRoleConig) {
-    return axios.post(`${BASE_URL.IAM}/admin-role-config/update`, data);
+    return axios.post(`${BASE_URL.ADMIN}/admin-role-config/update`, data);
   },
 
   Delete(data: ArgID) {
-    return axios.post(`${BASE_URL.IAM}/admin-role-config/delete`, data);
+    return axios.post(`${BASE_URL.ADMIN}/admin-role-config/delete`, data);
   },
 
   Detail(params: ArgID) {
-    return axios.get(`${BASE_URL.IAM}/admin-role-config/detail`, { params });
+    return axios.get(`${BASE_URL.ADMIN}/admin-role-config/detail`, { params });
   },
 };

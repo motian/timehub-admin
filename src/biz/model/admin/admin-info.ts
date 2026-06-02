@@ -15,24 +15,37 @@ export default class MAdminInfo extends BaseModel {
 
   mobile = '';
 
-  nickName = '';
-
   avatar = '';
 
   @format('option', getOptions(CUser.Gender))
   gender = 1;
 
-  type = 0;
-
   roleId = 0;
+
+  roleName = '';
 
   @format('option', getOptions(['启用', '禁用']))
   status = 0; // 1. 启用 2. 禁用
 
   remark = '';
 
+  creatorId = 0;
+
+  creator: {
+    id: number;
+    teamId: number;
+    name: string;
+    mobile: string;
+    avatar: string;
+    gender: number;
+    roleId: number;
+  } | null = null;
+
   @format('datetime', 'save')
   createdAt = '';
+
+  @format('datetime', 'save')
+  updatedAt = '';
 
   @itemModel(MAdminTeam)
   team = new MAdminTeam();
@@ -44,12 +57,11 @@ export default class MAdminInfo extends BaseModel {
 
   currentRole = '';
 
-  landingGroupIds: number[] = [];
-
   permission = {};
 
   fromJson() {
     this.avatar = this.avatar || DEFAULT_AVATAR;
+    this.role.name = this.roleName || this.role.name;
     this.currentRole = 'admin';
   }
 

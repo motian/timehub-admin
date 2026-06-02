@@ -4,18 +4,18 @@ import BASE_URL, { ArgID, ArgPage } from '../../common';
 
 export default {
   GetList(params: ArgPage) {
-    return axios.get(`${BASE_URL.IAM}/admin-team/list`, { params });
+    return axios.get(`${BASE_URL.ADMIN}/admin-team/list`, { params });
   },
 
   Create(data: MAdminTeam) {
-    return axios.post(`${BASE_URL.IAM}/admin-team/create`, data);
+    return axios.post(`${BASE_URL.ADMIN}/admin-team/create`, data);
   },
 
   Update(data: MAdminTeam) {
-    return axios.post(`${BASE_URL.IAM}/admin-team/update`, data);
+    return axios.post(`${BASE_URL.ADMIN}/admin-team/update`, data);
   },
 
   Delete(data: ArgID) {
-    return axios.post(`${BASE_URL.IAM}/admin-team/delete`, data);
+    return axios.post(`${BASE_URL.ADMIN}/admin-team/delete`, data);
   },
 };

@@ -8,7 +8,7 @@ export interface ArgPage {
 }
 
 const BASE_URL = {
-  IAM: '/api/iam',
+  ADMIN: '/api/admin',
   WEBHOOK: '/api/webhook/admin',
   COMMON: '/api/common/admin',
   MARKETING: '/api/marketing/admin',

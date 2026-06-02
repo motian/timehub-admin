@@ -64,7 +64,7 @@ axios.interceptors.response.use(
       // 50008: Illegal token; 50012: Other clients logged in; 50014: Token expired;
       if (
         [50008, 50012, 50014].includes(res.code) &&
-        response.config.url !== `${BASE_URL.IAM}/admin/info`
+        response.config.url !== `${BASE_URL.ADMIN}/auth/info`
       ) {
         Modal.error({
           title: '温馨提示',

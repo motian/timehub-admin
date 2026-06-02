@@ -4,22 +4,22 @@ import axios from 'axios';
 
 export default {
   GetList(params: ArgPage) {
-    return axios.get(`${BASE_URL.IAM}/admin-menu/list`, { params });
+    return axios.get(`${BASE_URL.ADMIN}/admin-menu/list`, { params });
   },
 
   GetCurrent() {
-    return axios.get(`${BASE_URL.IAM}/admin-menu/current`, {});
+    return axios.get(`${BASE_URL.ADMIN}/admin-menu/current`, {});
   },
 
   Create(data: MAdminMenu) {
-    return axios.post(`${BASE_URL.IAM}/admin-menu/create`, data);
+    return axios.post(`${BASE_URL.ADMIN}/admin-menu/create`, data);
   },
 
   Update(data: MAdminMenu) {
-    return axios.post(`${BASE_URL.IAM}/admin-menu/update`, data);
+    return axios.post(`${BASE_URL.ADMIN}/admin-menu/update`, data);
   },
 
   Delete(data: ArgID) {
-    return axios.post(`${BASE_URL.IAM}/admin-menu/delete`, data);
+    return axios.post(`${BASE_URL.ADMIN}/admin-menu/delete`, data);
   },
 };
