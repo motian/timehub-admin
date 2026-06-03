@@ -2,6 +2,8 @@ import axios from 'axios';
 import type { RouteRecordNormalized } from 'vue-router';
 import { UserState } from '@/store/modules/user/types';
 import BASE_URL from '@/api/common';
+import md5 from 'md5';
+import { cloneDeep } from 'lodash-es';
 
 export interface LoginData {
   isAdmin?: number;
@@ -21,7 +23,9 @@ export interface CaptchaRes {
 }
 
 export function login(data: LoginData) {
-  return axios.post<LoginRes>(`${BASE_URL.ADMIN}/auth/login`, data);
+  const params = cloneDeep(data);
+  params.password = md5(params.password);
+  return axios.post<LoginRes>(`${BASE_URL.ADMIN}/auth/login`, params);
 }
 
 export function logout() {
