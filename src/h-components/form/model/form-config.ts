@@ -1,4 +1,11 @@
-type HFormType = 'radio-group' | 'input-group' | 'input';
+type HFormType =
+  | 'radio-group'
+  | 'input-group'
+  | 'input'
+  | 'date-picker'
+  | 'time-picker'
+  | 'time-range-picker'
+  | 'range-picker';
 
 export interface HFormConfigItemChild {
   name?: string;

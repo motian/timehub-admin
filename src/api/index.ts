@@ -5,6 +5,8 @@ import AdminTeam from './biz/admin/admin-team';
 import Article from './biz/content/article';
 import Media from './biz/media/media';
 import Product from './biz/product/product';
+import Sight from './biz/sight/sight';
+import SightSection from './biz/sight/sight-section';
 
 const API = {
   AdminRoleConfig,
@@ -14,6 +16,8 @@ const API = {
   Article,
   Media,
   Product,
+  Sight,
+  SightSection,
 };
 
 export default API;

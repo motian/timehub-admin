@@ -148,6 +148,21 @@
       v-bind="formItemAttrs"
       v-on="formItemEvents"
     />
+    <a-time-picker
+      v-if="formItem.type === 'time-picker'"
+      v-model="formItemData"
+      allow-clear
+      v-bind="formItemAttrs"
+      v-on="formItemEvents"
+    />
+    <a-time-picker
+      v-if="formItem.type === 'time-range-picker'"
+      v-model="formItemData"
+      type="time-range"
+      allow-clear
+      v-bind="formItemAttrs"
+      v-on="formItemEvents"
+    />
     <a-month-picker
       v-if="formItem.type === 'month-picker'"
       v-model="formItemData"
