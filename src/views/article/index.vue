@@ -1,6 +1,7 @@
 <script setup lang="ts">
   import {
     ARTICLE_STATUS_OPTIONS,
+    ARTICLE_TYPE_ALL_OPTIONS,
     ARTICLE_TYPE_OPTIONS,
     ArticleStatus,
   } from '@/biz/const/article';
@@ -163,7 +164,7 @@
       </template>
       <template #type="{ record }">
         {{
-          ARTICLE_TYPE_OPTIONS.find((item) => item.value === record.type)
+          ARTICLE_TYPE_ALL_OPTIONS.find((item) => item.value === record.type)
             ?.label || record.type
         }}
       </template>

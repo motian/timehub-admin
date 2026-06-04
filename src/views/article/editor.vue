@@ -50,6 +50,7 @@
       class="form"
       size="small"
       :config="formConfig"
+      :auto-label-width="false"
       hide-group-title
     >
       <template #cover="{ formItem }">
@@ -125,7 +126,7 @@
 
     .form {
       margin: 15px 0;
-      padding: 30px;
+      padding: 30px 30px 80px;
       background-color: white;
     }
 

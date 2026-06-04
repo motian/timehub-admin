@@ -1,4 +1,7 @@
-import { ARTICLE_TYPE_OPTIONS } from '@/biz/const/article';
+import {
+  ARTICLE_TYPE_ALL_OPTIONS,
+  isAgreementArticle,
+} from '@/biz/const/article';
 import { getOptions } from '@/biz/const/common';
 import BaseModel from '@/biz/model-base/common/base-model';
 import { format, itemModel } from '@/biz/model-base/decorator/attribute';
@@ -9,8 +12,10 @@ export default class MArticle extends BaseModel {
 
   code = '';
 
-  @format('option', ARTICLE_TYPE_OPTIONS)
+  @format('option', ARTICLE_TYPE_ALL_OPTIONS)
   type = 1;
+
+  agreementType = 0;
 
   cover = '';
 
@@ -53,6 +58,7 @@ export default class MArticle extends BaseModel {
     return {
       id: this.id,
       type: this.type,
+      agreementType: isAgreementArticle(this.type) ? this.agreementType : 0,
       cover: this.cover,
       title: this.title,
       content: this.content,

@@ -1,4 +1,9 @@
-import { ARTICLE_TYPE_OPTIONS, needsCover } from '@/biz/const/article';
+import {
+  ARTICLE_TYPE_OPTIONS,
+  ARTICLE_AGREEMENT_TYPE_OPTIONS,
+  isAgreementArticle,
+  needsCover,
+} from '@/biz/const/article';
 import { getOptions } from '@/biz/const/common';
 import MArticle from '@/biz/model/article/article';
 import { Ref } from 'vue';
@@ -21,6 +26,9 @@ const getFormConfig = (formData: Ref<MArticle>) => {
               if (formData.value.type === 2) {
                 formData.value.content = '';
               }
+              if (!isAgreementArticle(formData.value.type)) {
+                formData.value.agreementType = 0;
+              }
               if (!needsCover(formData.value.type)) {
                 formData.value.cover = '';
               }
@@ -32,6 +40,22 @@ const getFormConfig = (formData: Ref<MArticle>) => {
             required: true,
             message: '请选择文章类型',
           },
+        },
+        {
+          type: 'radio-group',
+          label: '协议类型',
+          name: 'agreementType',
+          bindAttrs: {
+            options: ARTICLE_AGREEMENT_TYPE_OPTIONS,
+            placeholder: '请选择协议类型',
+          },
+          rules: {
+            type: 'number',
+            positive: true,
+            required: true,
+            message: '请选择协议类型',
+          },
+          vIf: (article: MArticle) => isAgreementArticle(article.type),
         },
         {
           type: 'input',
