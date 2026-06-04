@@ -14,7 +14,7 @@ import '@/assets/style/global.less';
 import '@/api/interceptor';
 
 window.staticDomain = 'cdn.hetu.yun';
-window.uploadDomain = 'up-z2.qiniup.com';
+window.uploadDomain = 'up-z0.qiniup.com';
 window.appWebsite = 'robot.hetu.yun';
 window.appName = '拾光巷漫集';
 window.appIcon = 'https://cdn.hetu.yun/FqjFicouHfeeDl2JkifbwCgkdONQ';
