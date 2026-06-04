@@ -1,6 +1,7 @@
 import BaseModel from '@/biz/model-base/common/base-model';
 import { format } from '@/biz/model-base/decorator/attribute';
 
+/** 与 timehub-api model.Media 对外 JSON 字段对齐 */
 export default class MMedia extends BaseModel {
   id = 0;
 
@@ -28,6 +29,9 @@ export default class MMedia extends BaseModel {
 
   @format('datetime', 'save')
   createdAt = '';
+
+  @format('datetime', 'save')
+  updatedAt = '';
 
   fromJson() {
     if (!this.isVideo) {

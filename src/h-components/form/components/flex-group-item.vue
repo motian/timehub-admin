@@ -56,10 +56,17 @@
   const formItemEvents = computed(() => {
     return props.formItem.bindEvents ?? {};
   });
+
+  const formItemVIf = computed(() => {
+    return isFunction(props.formItem.vIf)
+      ? props.formItem.vIf(props.formData)
+      : true;
+  });
 </script>
 
 <template>
   <a-form-item
+    v-if="formItemVIf"
     :class="formClass"
     :hide-label="!formItem.label"
     :label="formItem.label"

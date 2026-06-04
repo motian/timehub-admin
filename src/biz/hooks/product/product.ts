@@ -1,23 +1,27 @@
 import { API } from '@/api';
-import MArticle from '@/biz/model/article/article';
+import MProduct from '@/biz/model/product/product';
 import MMedia from '@/biz/model/media/media';
-import { needsCarouselImages } from '@/biz/const/article';
 import { Message } from '@arco-design/web-vue';
 import useMultiPageData from '../common/multi-page';
 
-const MEDIA_TYPE_ARTICLE = 'article';
+const MEDIA_TYPE_PRODUCT = 'product';
 
-export default function useArticleApi() {
-  const articleApi = useMultiPageData<MArticle>(API.Article, MArticle);
+export default function useProductApi() {
+  const productApi = useMultiPageData<MProduct>(API.Product, MProduct);
 
-  const updateStatus = async (record: MArticle) => {
+  const updateStatus = async (record: MProduct) => {
     const status = record.status === 1 ? 2 : 1;
-    await API.Article.UpdateStatus({ id: record.id, status });
+    await API.Product.UpdateStatus({ id: record.id, status });
     Message.success(status === 1 ? '上架成功' : '下架成功');
   };
 
-  const syncArticleImages = async (
-    articleId: number,
+  const cancelActivity = async (record: MProduct, remark = '') => {
+    await API.Product.CancelActivity({ productId: record.id, remark });
+    Message.success('活动已取消，相关订单将自动处理退款');
+  };
+
+  const syncProductImages = async (
+    productId: number,
     images: MMedia[],
     originalImageIds: number[]
   ) => {
@@ -31,15 +35,15 @@ export default function useArticleApi() {
 
     if (deletedIds.length) {
       await API.Media.BatchDelete({
-        type: MEDIA_TYPE_ARTICLE,
-        bizId: articleId,
+        type: MEDIA_TYPE_PRODUCT,
+        bizId: productId,
         ids: deletedIds,
       });
     }
     if (newMedias.length) {
       await API.Media.BatchCreate({
-        type: MEDIA_TYPE_ARTICLE,
-        bizId: articleId,
+        type: MEDIA_TYPE_PRODUCT,
+        bizId: productId,
         medias: newMedias.map((item, index) => {
           item.sort = index + 1;
           return item;
@@ -51,7 +55,7 @@ export default function useArticleApi() {
     );
     if (sortChanged && images.some((item) => item.id > 0)) {
       await API.Media.UpdateSort({
-        type: MEDIA_TYPE_ARTICLE,
+        type: MEDIA_TYPE_PRODUCT,
         data: images
           .filter((item) => item.id > 0)
           .map((item, index) => ({ id: item.id, sort: index + 1 })),
@@ -59,36 +63,37 @@ export default function useArticleApi() {
     }
   };
 
-  const saveArticle = async (
-    article: MArticle,
+  const saveProduct = async (
+    product: MProduct,
     originalImageIds: number[] = []
   ) => {
-    const payload = article.toSubmit();
-    let articleId = article.id;
+    const payload = product.toSubmit();
+    let productId = product.id;
 
-    if (!articleId) {
-      const { data } = await API.Article.Create(payload);
-      articleId = data?.id ?? 0;
+    if (!productId) {
+      const { data } = await API.Product.Create(payload);
+      productId = data?.id ?? 0;
     } else {
-      await API.Article.Update(payload);
+      await API.Product.Update(payload);
     }
 
-    if (articleId && needsCarouselImages(article.type)) {
-      await syncArticleImages(
-        articleId,
-        article.images || [],
+    if (productId) {
+      await syncProductImages(
+        productId,
+        product.images || [],
         originalImageIds
       );
     }
 
     Message.success('保存成功');
-    return articleId;
+    return productId;
   };
 
   return {
-    ...articleApi,
+    ...productApi,
     updateStatus,
-    saveArticle,
-    syncArticleImages,
+    cancelActivity,
+    saveProduct,
+    syncProductImages,
   };
 }

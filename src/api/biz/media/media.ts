@@ -5,7 +5,7 @@ import BASE_URL, { ArgID } from '../../common';
 interface ArgBatchCreate {
   type: string;
   bizId: number;
-  medias: Partial<MMedia>[];
+  medias: MMedia[];
 }
 
 export default {

@@ -13,6 +13,7 @@
     :accept="accept"
     @before-upload="beforeUpload"
     @change="handleChange"
+    @exceed-limit="onExceedLimit"
   >
     <template v-if="limit === 1" #upload-button>
       <!-- 单图上传-->
@@ -184,7 +185,17 @@
     }
   };
 
+  const onExceedLimit = () => {
+    if (props.limit > 0) {
+      Message.warning(`最多上传 ${props.limit} 张`);
+    }
+  };
+
   const beforeUpload = async (file: File) => {
+    if (props.limit > 0 && fileList.value.length >= props.limit) {
+      Message.warning(`最多上传 ${props.limit} 张`);
+      return false;
+    }
     const isOutOfLimit = (file.size as number) / 1024 / 1024 > props.maxSize;
     if (isOutOfLimit) {
       Message.error(`文件不能超过${props.maxSize}MB!`);

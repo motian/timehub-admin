@@ -1,6 +1,5 @@
 <script setup lang="ts">
-  import { needsCarouselImages } from '@/biz/const/article';
-  import useArticleApi from '@/biz/hooks/article/article';
+  import useProductApi from '@/biz/hooks/product/product';
   import useScreenSize from '@/biz/hooks/common/screen';
   import { Message } from '@arco-design/web-vue';
   import { onMounted, ref } from 'vue';
@@ -13,7 +12,7 @@
   const { sidebarWidth } = useScreenSize();
   const formRef = ref();
   const originalImageIds = ref<number[]>([]);
-  const { detail: formData, loadDetail, saveArticle } = useArticleApi();
+  const { detail: formData, loadDetail, saveProduct } = useProductApi();
   const formConfig = getFormConfig(formData);
 
   const onCoverUpload = (_: unknown, res: { url: string }) => {
@@ -28,17 +27,15 @@
       Message.warning(errors?.[key]?.message);
       return;
     }
-    await saveArticle(formData.value, originalImageIds.value);
-    router.replace({ name: 'ArticleList' });
+    await saveProduct(formData.value, originalImageIds.value);
+    router.replace({ name: 'ProductList' });
   };
 
   onMounted(async () => {
     await loadDetail(argId);
-    if (needsCarouselImages(formData.value.type)) {
-      originalImageIds.value = (formData.value.images || [])
-        .filter((item) => item.id > 0)
-        .map((item) => item.id);
-    }
+    originalImageIds.value = (formData.value.images || [])
+      .filter((item) => item.id > 0)
+      .map((item) => item.id);
   });
 </script>
 
@@ -64,15 +61,15 @@
               :media-list="formData.cover ? [{ url: formData.cover }] : []"
               :limit="1"
               :max-size="10"
-              :width="100"
-              :height="143"
+              :width="150"
+              :height="74"
               accept="image/jpg,image/jpeg,image/png"
               @upload="onCoverUpload"
               @remove="() => (formData.cover = '')"
             />
           </div>
           <template #extra>
-            建议尺寸 375×535，大小不超过 10M，支持 JPG/PNG 格式
+            建议尺寸 750×368，大小不超过 10M，支持 JPG/PNG 格式
           </template>
         </a-form-item>
       </template>
@@ -90,25 +87,14 @@
         </a-form-item>
       </template>
       <template #content>
-        <a-form-item
-          v-if="formData.type === 2"
-          field="content"
-          label="公众号链接"
-          required
-        >
-          <a-input
-            v-model.trim="formData.content"
-            placeholder="请输入公众号文章链接"
-          />
-        </a-form-item>
-        <a-form-item v-else field="content" label="正文" required>
+        <a-form-item field="content" label="活动详情" required>
           <h-editor v-model="formData.content" />
         </a-form-item>
       </template>
     </h-form>
     <div class="footer" :style="{ left: `${sidebarWidth}px` }">
       <a-button type="primary" class="wm-r-10" @click="onSaveData">
-        <span v-if="!argId">确认发布</span>
+        <span v-if="!argId">确认保存</span>
         <span v-else>确认修改</span>
       </a-button>
       <a-button @click="router.back()">取消</a-button>
@@ -125,7 +111,7 @@
 
     .form {
       margin: 15px 0;
-      padding: 30px;
+      padding: 30px 30px 80px;
       background-color: white;
     }
 

@@ -86,6 +86,10 @@
     formData[name]?.splice(index, 1);
   }
 
+  const formItemVIf = (formItem: any) => {
+    return isFunction(formItem.vIf) ? formItem.vIf(formData) : true;
+  };
+
   watchEffect(() => {
     form.value = props.modelValue;
     if (!expandedKeys.value.length) {
@@ -125,7 +129,7 @@
         </div>
         <div
           v-for="(formItem, formIndex) in configItem.children"
-          v-show="expandedKeys[index]"
+          v-show="expandedKeys[index] && formItemVIf(formItem)"
           :key="`${formIndex}-${formItem.name || formItem.slotName}`"
           class="form-content"
         >
