@@ -11,7 +11,7 @@ const LIST: AppRouteRecordRaw = {
     requiresAuth: true,
     icon: 'icon-gift',
     hideChildrenInMenu: true,
-    order: 5,
+    order: 3,
   },
   children: [
     {

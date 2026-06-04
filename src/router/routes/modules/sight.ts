@@ -10,7 +10,7 @@ const SIGHT: AppRouteRecordRaw = {
     locale: '逛集探村',
     requiresAuth: true,
     icon: 'icon-compass',
-    order: 7,
+    order: 2,
   },
   children: [
     {
