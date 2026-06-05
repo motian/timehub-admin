@@ -30,6 +30,9 @@ export default class MOrder extends BaseModel {
   leftPaySeconds = 0;
 
   @format('datetime', 'save')
+  createdAt = '';
+
+  @format('datetime', 'save')
   paidAt = '';
 
   @format('datetime', 'save')

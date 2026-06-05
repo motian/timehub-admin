@@ -10,6 +10,7 @@ import SightSection from './biz/sight/sight-section';
 import AdSlot from './biz/operation/ad-slot';
 import Community from './biz/operation/community';
 import Order from './biz/order/order';
+import User from './biz/user/user';
 
 const API = {
   AdminRoleConfig,
@@ -24,6 +25,7 @@ const API = {
   AdSlot,
   Community,
   Order,
+  User,
 };
 
 export default API;

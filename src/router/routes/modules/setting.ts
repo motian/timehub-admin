@@ -12,7 +12,7 @@ const LIST: AppRouteRecordRaw = {
     requiresAuth: true,
     icon: 'icon-settings',
     hideChildrenInMenu: false,
-    order: 6,
+    order: 7,
     activeMenu: 'SettingAdmin',
   },
   children: [

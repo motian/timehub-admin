@@ -1,4 +1,8 @@
+import { getOptions } from './common';
+
 const Gender = ['男', '女'];
+
+export const USER_STATUS_OPTIONS = getOptions(['正常', '禁用']);
 const Position = ['置业顾问', '销售顾问', '店长', '客服运营', '上级管理'];
 const PositionTypeOptions = [
   {
