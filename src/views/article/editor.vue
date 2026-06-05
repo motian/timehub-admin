@@ -1,5 +1,5 @@
 <script setup lang="ts">
-  import { needsCarouselImages } from '@/biz/const/article';
+  import { needsCarouselImages, needsCover } from '@/biz/const/article';
   import useArticleApi from '@/biz/hooks/article/article';
   import useScreenSize from '@/biz/hooks/common/screen';
   import { Message } from '@arco-design/web-vue';
@@ -55,6 +55,7 @@
     >
       <template #cover="{ formItem }">
         <a-form-item
+          v-if="needsCover(formData.type)"
           label="封面图"
           field="cover"
           :rules="formItem.rules"

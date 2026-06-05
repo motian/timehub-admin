@@ -101,8 +101,11 @@ const getFormConfig = (formData: Ref<MArticle>) => {
           slotName: 'cover',
           vIf: (article: MArticle) => needsCover(article.type),
           rules: {
-            required: true,
             validator: (value: string, callback: (msg?: string) => void) => {
+              if (!needsCover(formData.value.type)) {
+                callback();
+                return;
+              }
               if (!value?.trim()) {
                 callback('请上传封面图或填写封面地址');
                 return;
