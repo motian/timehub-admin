@@ -6,7 +6,7 @@
         <a-space>
           <img
             style="width: 30px; height: 30px"
-            src="https://cdn.hetu.yun/assets/hetu-logo.png"
+            src="https://timehub-static.haocode.net/Fv8qOWAoRcqM39tJ1dzihHuUjLhZ.jpeg"
           />
           <h2 style="font-weight: bold; font-size: 20px">拾光巷漫集</h2>
         </a-space>
@@ -21,7 +21,10 @@
       <li>
         <a-dropdown trigger="hover">
           <a-space class="user-dropdown">
-            <img width="30" src="https://cdn.hetu.yun/assets/hetu-logo.png" />
+            <img
+              width="30"
+              src="https://timehub-static.haocode.net/Fv8qOWAoRcqM39tJ1dzihHuUjLhZ.jpeg"
+            />
             <span>{{ userStore.userInfo.mobile }}</span>
             <icon-caret-down />
           </a-space>
