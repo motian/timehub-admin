@@ -13,7 +13,7 @@
     { title: '性别', dataIndex: 'gender', width: 60 },
     { title: '手机号', dataIndex: 'mobile', width: 120 },
     { title: '状态', dataIndex: 'status', width: 80 },
-    { title: '员工权限', slotName: 'staff', width: 90 },
+    { title: '核销权限', slotName: 'staff', width: 90 },
     { title: '积分余额', dataIndex: 'creditBalance', width: 90 },
     { title: '注册时间', dataIndex: 'createdAt', width: 160 },
     { title: '最近活跃', dataIndex: 'lastActiveAt', width: 160 },
@@ -126,7 +126,7 @@
       </template>
       <template #staff="{ record }">
         <a-tag v-if="record.isStaff" size="small" color="arcoblue">是</a-tag>
-        <span v-else class="sub-text">否</span>
+        <a-tag v-else class="sub-text">否</a-tag>
       </template>
       <template #operation="{ record }">
         <div class="h-tb-btn">

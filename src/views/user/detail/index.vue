@@ -36,7 +36,7 @@
     { label: '状态', field: 'status' },
     { label: '生日', field: 'birthday' },
     { label: '所在地区', field: 'areaLabel' },
-    { label: '员工权限', field: 'isStaff' },
+    { label: '核销权限', field: 'isStaff' },
     { label: '注册时间', field: 'createdAt' },
     { label: '最近活跃', field: 'lastActiveAt' },
   ];
