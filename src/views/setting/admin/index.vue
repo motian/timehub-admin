@@ -1,6 +1,7 @@
 <script setup lang="ts">
   import { getOptions } from '@/biz/const/common';
   import CUser from '@/biz/const/user';
+  import { AdminRoleConfigType } from '@/biz/const/admin-role-config';
   import useAdminRoleConfigApi from '@/biz/hooks/admin/admin-role-config';
   import useAdminApi from '@/biz/hooks/admin/admin';
   import useAdminTeamApi from '@/biz/hooks/admin/admin-team';
@@ -41,7 +42,7 @@
       : false,
     {
       title: '角色',
-      dataIndex: 'role.name',
+      slotName: 'roleName',
       width: 150,
     },
     {
@@ -189,11 +190,28 @@
 
   const roleOptions = computed(() => {
     // type === 0 时为超管角色， 可选择所有角色
-    if (userInfo.role?.type === 0) {
+    if (userInfo.role?.type === AdminRoleConfigType.Super) {
       return roleList.value;
     }
     // 非超级管理员，仅可选择除「超级管理员」以外的角色
-    return roleList.value.filter((role) => role.type !== 0);
+    return roleList.value.filter(
+      (role) => role.type !== AdminRoleConfigType.Super
+    );
+  });
+
+  const isRoleFieldDisabled = computed(() => {
+    if (userInfo.isSuperManager) {
+      return false;
+    }
+    const { form } = formModal.value;
+    if (!form.id) {
+      return false;
+    }
+    const role =
+      form.role?.type !== undefined
+        ? form.role
+        : roleList.value.find((item) => item.id === form.roleId);
+    return role?.type === AdminRoleConfigType.Super;
   });
 
   const getTeamName = (record: MAdminTeam) => {
@@ -309,6 +327,7 @@
             v-model="formModal.form.roleId"
             size="small"
             :empty-value="0"
+            :disabled="isRoleFieldDisabled"
             :options="roleOptions"
             :field-names="{ label: 'name', value: 'id' }"
             placeholder="请选择角色"
@@ -379,6 +398,9 @@
       </template>
       <template #teamName="{ record }">
         {{ getTeamName(record.team) }}
+      </template>
+      <template #roleName="{ record }">
+        {{ record.role?.name || record.roleName || '/' }}
       </template>
       <template #operation="{ record }">
         <div class="h-tb-btn">

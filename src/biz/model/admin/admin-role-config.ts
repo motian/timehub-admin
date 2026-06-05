@@ -1,6 +1,5 @@
 import BaseModel from '@/biz/model-base/common/base-model';
-import { format, itemModel } from '@/biz/model-base/decorator/attribute';
-import MAdminInfo from './admin-info';
+import { format } from '@/biz/model-base/decorator/attribute';
 
 export default class MAdminRoleConfig extends BaseModel {
   id = 0;
@@ -13,8 +12,13 @@ export default class MAdminRoleConfig extends BaseModel {
 
   menuIds: number[] = [];
 
-  @itemModel(MAdminInfo)
-  creator = new MAdminInfo();
+  creator: {
+    id: number;
+    name: string;
+  } = {
+    id: 0,
+    name: '',
+  };
 
   @format('date', 'save')
   createdAt = '';

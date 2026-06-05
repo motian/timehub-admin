@@ -6,6 +6,7 @@ import {
 } from '@/api/user';
 import HJson from '@/biz/model-base/h-json';
 import MAdminInfo from '@/biz/model/admin/admin-info';
+import useAdminPermissions from '@/components/menu/useAdminPermissions';
 import { clearToken, setToken } from '@/utils/auth';
 import { removeRouteListener } from '@/utils/route-listener';
 import { defineStore } from 'pinia';
@@ -39,8 +40,10 @@ const useUserStore = defineStore('user', {
 
     // Get user's information
     async info() {
+      const { buildRoutePermission } = useAdminPermissions();
       const { data } = await getUserInfo();
       const info = HJson.fromJson(data, MAdminInfo);
+      info._routeMap = await buildRoutePermission();
       this.setInfo(info);
     },
 

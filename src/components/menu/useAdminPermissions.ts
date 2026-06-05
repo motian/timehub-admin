@@ -61,7 +61,7 @@ export default function useAdminPermissions() {
       }
     });
 
-    return routeMap;
+    return routeMap.value;
   };
 
   return {

@@ -8,7 +8,7 @@ export default {
   },
 
   GetCurrent() {
-    return axios.get(`${BASE_URL.ADMIN}/admin-menu/current`, {});
+    return axios.get(`${BASE_URL.ADMIN}/admin/menu-list`);
   },
 
   Create(data: MAdminMenu) {

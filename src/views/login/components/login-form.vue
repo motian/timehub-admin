@@ -132,7 +132,7 @@
         const { redirect, ...othersQuery } = router.currentRoute.value.query;
         await userStore.info();
         router.push({
-          name: (redirect as string) || 'SettingAdmin',
+          name: (redirect as string) || userStore.userInfo.homePage,
           query: {
             ...othersQuery,
           },

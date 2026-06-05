@@ -8,6 +8,11 @@ export default function usePermission() {
     accessRouter(route: RouteLocationNormalized | RouteRecordRaw) {
       if (!route.meta?.requiresAuth) return true;
 
+      const routeName = String(route.name);
+      if (!userStore.userInfo?._routeMap?.[routeName]) {
+        return false;
+      }
+
       return (
         !route.meta?.roles ||
         route.meta?.roles?.includes('*') ||

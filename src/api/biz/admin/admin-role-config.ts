@@ -1,5 +1,5 @@
 import BASE_URL, { ArgID, ArgPage } from '@/api/common';
-import MAdminRoleConig from '@/biz/model/admin/admin-role-config';
+import MAdminRoleConfig from '@/biz/model/admin/admin-role-config';
 import axios from 'axios';
 
 export default {
@@ -7,11 +7,11 @@ export default {
     return axios.get(`${BASE_URL.ADMIN}/admin-role-config/list`, { params });
   },
 
-  Create(data: MAdminRoleConig) {
+  Create(data: MAdminRoleConfig) {
     return axios.post(`${BASE_URL.ADMIN}/admin-role-config/create`, data);
   },
 
-  Update(data: MAdminRoleConig) {
+  Update(data: MAdminRoleConfig) {
     return axios.post(`${BASE_URL.ADMIN}/admin-role-config/update`, data);
   },
 

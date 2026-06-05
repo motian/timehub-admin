@@ -21,7 +21,7 @@
 
   const back = () => {
     // warning： Go to the node that has the permission
-    router.push({ name: 'SettingAdmin' });
+    router.push({ name: userStore.userInfo.homePage });
   };
 </script>
 

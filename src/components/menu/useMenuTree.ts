@@ -1,12 +1,13 @@
 import { computed } from 'vue';
 import { RouteRecordRaw, RouteRecordNormalized } from 'vue-router';
 import usePermission from '@/hooks/permission';
-import { useAppStore } from '@/store';
+import { useAppStore, useUserStore } from '@/store';
 import appClientMenus from '@/router/appMenus';
 
 export default function useMenuTree() {
   const permission = usePermission();
   const appStore = useAppStore();
+  const userStore = useUserStore();
 
   const appRoute = computed(() => {
     if (appStore.menuFromServer) {
@@ -16,9 +17,10 @@ export default function useMenuTree() {
       if (menu.meta.hideInMenu === true) {
         return false;
       }
-      const children = menu.children.filter(
-        (child) => child.meta?.hideInMenu !== true
-      );
+      const children = menu.children.filter((child) => {
+        const childName = String(child.name);
+        return userStore.userInfo?._routeMap?.[childName];
+      });
       if (children.length) {
         menu.children = children;
         return true;

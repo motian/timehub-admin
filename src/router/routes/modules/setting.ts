@@ -12,7 +12,7 @@ const LIST: AppRouteRecordRaw = {
     requiresAuth: true,
     icon: 'icon-settings',
     hideChildrenInMenu: false,
-    order: 5,
+    order: 6,
     activeMenu: 'SettingAdmin',
   },
   children: [
@@ -39,6 +39,17 @@ const LIST: AppRouteRecordRaw = {
         hideInMenu: true,
         activeMenu: 'SettingAdmin',
         tabs: SettingAdminTabs,
+      },
+    },
+    {
+      path: 'role',
+      name: 'SettingRole',
+      component: () => import('@/views/setting/role/index.vue'),
+      meta: {
+        locale: '角色管理',
+        requiresAuth: true,
+        roles: ['*'],
+        activeMenu: 'SettingRole',
       },
     },
   ],
