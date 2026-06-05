@@ -5,6 +5,7 @@
   import { useAppStore } from '@/store';
   import { listenerRouteChange } from '@/utils/route-listener';
   import { openWindow, regexUrl } from '@/utils';
+  import appClientMenus from '@/router/appMenus';
   import useMenuTree from './useMenuTree';
   import useQuery from '@/biz/hooks/common/query';
 
@@ -74,18 +75,35 @@
         });
         return result;
       };
+      const resolveMenuActiveKey = (
+        activeMenu?: string,
+        routeName?: string
+      ) => {
+        const key = activeMenu || routeName;
+        if (!key) return key;
+        if (findMenuOpenKeys(key).length) return key;
+        // hideChildrenInMenu 下列表路由不在侧栏，高亮父级菜单
+        const parent = appClientMenus.find(
+          (menu) =>
+            menu.meta?.hideChildrenInMenu &&
+            menu.children?.some((child) => child.name === key)
+        );
+        return parent ? (parent.name as string) : key;
+      };
       listenerRouteChange((newRoute) => {
         const { requiresAuth, activeMenu, hideInMenu } = newRoute.meta;
         if (requiresAuth && (!hideInMenu || activeMenu)) {
-          const menuOpenKeys = findMenuOpenKeys(
-            (activeMenu || newRoute.name) as string
+          const menuKey = resolveMenuActiveKey(
+            activeMenu as string | undefined,
+            newRoute.name as string
           );
+          const menuOpenKeys = findMenuOpenKeys(menuKey as string);
 
           const keySet = new Set([...menuOpenKeys, ...openKeys.value]);
           openKeys.value = [...keySet];
 
           selectedKey.value = [
-            activeMenu || menuOpenKeys[menuOpenKeys.length - 1],
+            menuKey || menuOpenKeys[menuOpenKeys.length - 1],
           ];
         }
       }, true);

@@ -21,7 +21,6 @@ const SIGHT: AppRouteRecordRaw = {
         locale: '市集管理',
         requiresAuth: true,
         roles: ['*'],
-        activeMenu: 'Sight',
       },
     },
     {
@@ -33,7 +32,7 @@ const SIGHT: AppRouteRecordRaw = {
         requiresAuth: true,
         roles: ['*'],
         hideInMenu: true,
-        activeMenu: 'Sight',
+        activeMenu: 'SightList',
       },
     },
     {
@@ -44,7 +43,6 @@ const SIGHT: AppRouteRecordRaw = {
         locale: '栏目管理',
         requiresAuth: true,
         roles: ['*'],
-        activeMenu: 'Sight',
       },
     },
   ],

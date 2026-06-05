@@ -34,7 +34,7 @@ const ORDER: AppRouteRecordRaw = {
         requiresAuth: true,
         roles: ['*'],
         hideInMenu: true,
-        activeMenu: 'Order',
+        activeMenu: 'OrderList',
         back: true,
       },
     },

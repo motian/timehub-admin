@@ -34,7 +34,7 @@ const LIST: AppRouteRecordRaw = {
         requiresAuth: true,
         roles: ['*'],
         hideInMenu: true,
-        activeMenu: 'Product',
+        activeMenu: 'ProductList',
       },
     },
   ],

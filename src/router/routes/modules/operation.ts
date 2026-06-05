@@ -21,7 +21,6 @@ const OPERATION: AppRouteRecordRaw = {
         locale: '首页图片位',
         requiresAuth: true,
         roles: ['*'],
-        activeMenu: 'Operation',
       },
     },
     {
@@ -33,7 +32,7 @@ const OPERATION: AppRouteRecordRaw = {
         requiresAuth: true,
         roles: ['*'],
         hideInMenu: true,
-        activeMenu: 'Operation',
+        activeMenu: 'AdSlotList',
       },
     },
     {
@@ -44,7 +43,6 @@ const OPERATION: AppRouteRecordRaw = {
         locale: '社区烟火气',
         requiresAuth: true,
         roles: ['*'],
-        activeMenu: 'Operation',
       },
     },
   ],
