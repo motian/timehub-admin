@@ -10,12 +10,13 @@
   import useOrderApi from '@/biz/hooks/order/order';
   import MOrder from '@/biz/model/order/order';
   import { Modal } from '@arco-design/web-vue';
-  import { onMounted } from 'vue';
-  import { useRouter } from 'vue-router';
+  import { onMounted, computed } from 'vue';
+  import { useRoute, useRouter } from 'vue-router';
   import openOrderRefund from './components/open-order-refund';
   import OrderStatusTag from './components/order-status-tag.vue';
 
   const router = useRouter();
+  const route = useRoute();
   const {
     queryParams,
     pageData,
@@ -51,14 +52,6 @@
     });
   };
 
-  const onReset = () => {
-    queryParams.value.orderNo = '';
-    queryParams.value.mobile = '';
-    queryParams.value.title = '';
-    queryParams.value.status = 0;
-    loadFirstPageData();
-  };
-
   const onRefund = (record: MOrder) => {
     openOrderRefund({
       order: record,
@@ -87,7 +80,41 @@
   const showCloseAftersaleBtn = (record: MOrder) =>
     canCancelAftersale(record.aftersale);
 
+  const isApplyOrderList = computed(
+    () =>
+      Number(queryParams.value.applyOnly) === 1 &&
+      Number(queryParams.value.productId) > 0
+  );
+
+  const applyListTitle = computed(() =>
+    String(queryParams.value.title || '').trim()
+  );
+
+  const initFromRoute = () => {
+    const { productId, title, applyOnly } = route.query;
+    if (productId) {
+      queryParams.value.productId = Number(productId);
+    }
+    if (title) {
+      queryParams.value.title = String(title);
+    }
+    if (applyOnly === '1') {
+      queryParams.value.applyOnly = 1;
+    }
+  };
+
+  const onReset = () => {
+    queryParams.value.orderNo = '';
+    queryParams.value.mobile = '';
+    queryParams.value.title = '';
+    queryParams.value.status = 0;
+    queryParams.value.productId = 0;
+    queryParams.value.applyOnly = 0;
+    loadFirstPageData();
+  };
+
   onMounted(() => {
+    initFromRoute();
     loadFirstPageData();
   });
 </script>
@@ -168,7 +195,10 @@
 
     <h-table :page-data="pageData" :columns="columns">
       <template #header>
-        <div>订单列表</div>
+        <div v-if="isApplyOrderList">
+          「{{ applyListTitle || '活动' }}」报名列表
+        </div>
+        <div v-else>订单列表</div>
       </template>
       <template #product="{ record }">
         <div class="product-cell">

@@ -3,6 +3,8 @@ import BASE_URL, { ArgPage } from '../../common';
 
 export interface ArgOrderList extends ArgPage {
   userId?: number;
+  productId?: number;
+  applyOnly?: number;
   status?: number;
   orderNo?: string;
   mobile?: string;

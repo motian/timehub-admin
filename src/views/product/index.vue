@@ -1,5 +1,6 @@
 <script setup lang="ts">
   import {
+    canCancelActivity,
     isActivityProduct,
     PRODUCT_STATUS_OPTIONS,
     PRODUCT_TYPE_OPTIONS,
@@ -9,7 +10,6 @@
   import useProductApi from '@/biz/hooks/product/product';
   import MProduct from '@/biz/model/product/product';
   import { Modal } from '@arco-design/web-vue';
-  import dayjs from 'dayjs';
   import { onMounted } from 'vue';
   import { useRouter } from 'vue-router';
 
@@ -33,7 +33,7 @@
     { title: '价格', slotName: 'salePrice', width: 90 },
     { title: '名额/库存', slotName: 'quota', width: 100 },
     { title: '状态', slotName: 'status', width: 90 },
-    { title: '操作', slotName: 'operation', width: 160 },
+    { title: '操作', slotName: 'operation', width: 280 },
   ];
 
   const formatPrice = (record: MProduct) => {
@@ -51,19 +51,23 @@
     return '不限';
   };
 
-  const canCancelActivity = (record: MProduct) => {
-    if (!isActivityProduct(record.type)) return false;
-    if (record.status !== ProductStatus.ONLINE) return false;
-    if (!record.startAt) return true;
-    return dayjs().isBefore(dayjs(record.startAt));
-  };
-
   const gotoEdit = (record: MProduct | null = null) => {
     router.push({
       name: 'ProductEditor',
       query: {
         id: String(record?.id || 0),
         locale: record?.id ? '编辑产品' : '添加产品',
+      },
+    });
+  };
+
+  const gotoApplyList = (record: MProduct) => {
+    router.push({
+      name: 'OrderList',
+      query: {
+        productId: String(record.id),
+        title: record.title,
+        applyOnly: '1',
       },
     });
   };
@@ -228,6 +232,12 @@
           <a-button size="small" type="text" @click="gotoEdit(record)">
             编辑
           </a-button>
+          <template v-if="isActivityProduct(record.type)">
+            <a-divider direction="vertical" :margin="0" />
+            <a-button size="small" type="text" @click="gotoApplyList(record)">
+              报名列表
+            </a-button>
+          </template>
         </div>
         <div class="h-tb-btn">
           <a-button
@@ -242,22 +252,27 @@
           </a-button>
           <a-divider direction="vertical" :margin="0" />
           <a-button
+            v-if="isActivityProduct(record.type)"
+            size="small"
+            type="text"
+            status="danger"
+            :disabled="!canCancelActivity(record)"
+            @click="onCancelActivity(record)"
+          >
+            取消活动
+          </a-button>
+          <a-divider
+            v-if="isActivityProduct(record.type)"
+            direction="vertical"
+            :margin="0"
+          />
+          <a-button
             size="small"
             type="text"
             status="danger"
             @click="onDelete(record)"
           >
             删除
-          </a-button>
-        </div>
-        <div v-if="canCancelActivity(record)" class="h-tb-btn">
-          <a-button
-            size="small"
-            type="text"
-            status="danger"
-            @click="onCancelActivity(record)"
-          >
-            取消活动
           </a-button>
         </div>
       </template>
