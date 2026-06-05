@@ -1,7 +1,7 @@
 <script lang="ts" setup>
   import {
     canDeleteAdminRole,
-    isBuiltinAdminRole,
+    isCustomAdminRole,
   } from '@/biz/const/admin-role-config';
   import useAdminRoleConfigApi from '@/biz/hooks/admin/admin-role-config';
   import MAdminRoleConfig from '@/biz/model/admin/admin-role-config';
@@ -197,12 +197,13 @@
           <a-button size="small" type="text" @click="handleEdit(record)">
             编辑
           </a-button>
-          <template v-if="!isBuiltinAdminRole(record.type)">
+          <template v-if="isCustomAdminRole(record.type)">
             <a-divider direction="vertical" :margin="0" />
             <a-button
               size="small"
               status="danger"
               type="text"
+              :disabled="!canDeleteAdminRole(record)"
               @click="handleDelete(record)"
             >
               删除

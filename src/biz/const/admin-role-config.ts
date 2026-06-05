@@ -5,16 +5,22 @@ export enum AdminRoleConfigType {
   Custom = 2,
 }
 
+/** type=0 超管、type=1 系统内置 */
 export function isBuiltinAdminRole(type: number) {
   return (
     type === AdminRoleConfigType.Super || type === AdminRoleConfigType.System
   );
 }
 
-/** 仅自定义角色可删除 */
+/** type=2 自定义角色 */
+export function isCustomAdminRole(type: number) {
+  return type === AdminRoleConfigType.Custom;
+}
+
+/** 仅自定义角色可删除，且不能有关联成员 */
 export function canDeleteAdminRole(record: {
   type: number;
   adminCount?: number;
 }) {
-  return !isBuiltinAdminRole(record.type) && !record.adminCount;
+  return isCustomAdminRole(record.type) && !record.adminCount;
 }
