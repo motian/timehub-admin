@@ -168,7 +168,12 @@
             <order-status-tag :status="record.status" />
           </template>
           <template #operation="{ record }">
-            <a-button size="small" type="text" @click="gotoOrderDetail(record)">
+            <a-button
+              class="h-tb-btn"
+              size="small"
+              type="text"
+              @click="gotoOrderDetail(record)"
+            >
               查看详情
             </a-button>
           </template>
