@@ -13,11 +13,11 @@ import '@arco-design/web-vue/dist/arco.css';
 import '@/assets/style/global.less';
 import '@/api/interceptor';
 
-window.staticDomain = 'cdn.hetu.yun';
+window.staticDomain = 'timehub-static.haocode.net';
 window.uploadDomain = 'up-z0.qiniup.com';
-window.appWebsite = 'robot.hetu.yun';
 window.appName = '拾光巷漫集';
-window.appIcon = 'https://cdn.hetu.yun/FqjFicouHfeeDl2JkifbwCgkdONQ';
+window.appIcon =
+  'https://timehub-static.haocode.net/Fv8qOWAoRcqM39tJ1dzihHuUjLhZ.jpeg';
 
 const app = createApp(App);
 

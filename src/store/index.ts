@@ -6,10 +6,5 @@ import useTeamStore from './modules/team';
 
 const pinia = createPinia();
 
-export {
-  useAppStore,
-  useUserStore,
-  useTabBarStore,
-  useTeamStore,
-};
+export { useAppStore, useUserStore, useTabBarStore, useTeamStore };
 export default pinia;

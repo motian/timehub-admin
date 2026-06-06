@@ -21,7 +21,6 @@ interface ImportMetaEnv {
 interface Window {
   staticDomain: string;
   uploadDomain: string;
-  appWebsite: string;
   appName: string;
   appIcon: string;
 }

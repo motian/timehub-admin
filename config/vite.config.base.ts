@@ -5,17 +5,12 @@ import vueJsx from '@vitejs/plugin-vue-jsx';
 import svgLoader from 'vite-svg-loader';
 import configArcoStyleImportPlugin from './plugin/arcoStyleImport';
 
-/** 纯对象，供 mergeConfig；勿在此包 defineConfig 回调，否则与子配置 merge 时 alias 等会丢失 */
 const APP_NAME = '拾光巷漫集';
-const APP_ICON = 'https://cdn.hetu.yun/FqjFicouHfeeDl2JkifbwCgkdONQ';
-const STATIC_DOMAIN = 'cdn.hetu.yun';
 
-export default function getBaseConfig(mode: string): UserConfig {
-  const baseUrl =
-    mode === 'production' ? `https://${STATIC_DOMAIN}/robot-admin/` : '/';
-
+/** 纯对象，供 mergeConfig；勿在此包 defineConfig 回调，否则与子配置 merge 时 alias 等会丢失 */
+export default function getBaseConfig(_mode: string): UserConfig {
   return {
-    base: baseUrl,
+    base: '/',
     server: {
       host: '0.0.0.0',
     },
@@ -27,9 +22,7 @@ export default function getBaseConfig(mode: string): UserConfig {
       {
         name: 'html-env-replace',
         transformIndexHtml(html) {
-          return html
-            .replace(/%VITE_APP_NAME%/g, APP_NAME)
-            .replace(/href="\/favicon\.ico"/g, `href="${APP_ICON}"`);
+          return html.replace(/%VITE_APP_NAME%/g, APP_NAME);
         },
       },
     ],
