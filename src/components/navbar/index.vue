@@ -2,11 +2,10 @@
   <div class="navbar">
     <div class="left-side">
       <a-space>
-        <!-- <img alt="logo" src="https://cdn.hetu.yun/assets/hetu-marketing-hub.png" /> -->
         <a-space>
           <img
             style="width: 30px; height: 30px"
-            src="https://timehub-static.haocode.net/Fv8qOWAoRcqM39tJ1dzihHuUjLhZ.jpeg"
+            src="https://timehub-static.haocode.net/Fgkg_BBy9ke77e5v4aMSmIyTyOIA.png"
           />
           <h2 style="font-weight: bold; font-size: 20px">拾光巷漫集</h2>
         </a-space>
@@ -23,7 +22,7 @@
           <a-space class="user-dropdown">
             <img
               width="30"
-              src="https://timehub-static.haocode.net/Fv8qOWAoRcqM39tJ1dzihHuUjLhZ.jpeg"
+              src="https://timehub-static.haocode.net/Fgkg_BBy9ke77e5v4aMSmIyTyOIA.png"
             />
             <span>{{ userStore.userInfo.mobile }}</span>
             <icon-caret-down />

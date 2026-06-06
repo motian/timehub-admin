@@ -6,7 +6,8 @@ import { isUndefined } from 'lodash-es';
 import MAdminRoleConfig from './admin-role-config';
 import MAdminTeam from './admin-team';
 
-const DEFAULT_AVATAR = 'https://cdn.hetu.yun/FktH8PqQg-7cNVKdEVvTbNiVRXz9';
+const DEFAULT_AVATAR =
+  'https://timehub-static.haocode.net/Fgkg_BBy9ke77e5v4aMSmIyTyOIA.png';
 
 export default class MAdminInfo extends BaseModel {
   id = 0;

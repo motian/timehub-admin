@@ -42,7 +42,7 @@
           class="err-img"
           :style="contentStyle"
           :preview="false"
-          src="https://cdn.hetu.yun/404.png"
+          src="https://timehub-static.haocode.net/404.png"
         />
       </template>
     </a-image>

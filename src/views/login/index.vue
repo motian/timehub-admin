@@ -3,7 +3,7 @@
     <div class="logo">
       <img
         alt="logo"
-        src="https://cdn.hetu.yun/assets/hetu-marketing-hub-white.png"
+        src="https://timehub-static.haocode.net/FmZwrI4UZQKkXb4aR8vqiGvFpvaI.png"
       />
     </div>
     <div class="banner">
@@ -135,8 +135,8 @@
   import bannerImage from '@/assets/images/login-banner.png';
 
   const carouselItem = {
-    slogan: '一站式智能营销私域中台',
-    subSlogan: '私域运营工具，助力社群运营者高效管理社群，提升社群活跃度',
+    slogan: '拾光巷漫集',
+    subSlogan: '拾光巷，银发社交活动新阵地，一起共赴时光之约。',
     image: bannerImage,
   };
 
@@ -317,14 +317,14 @@
 
   .logo {
     position: fixed;
-    left: 16px;
+    left: 10px;
     z-index: 1;
     display: inline-flex;
     align-items: center;
     height: 60px;
 
     img {
-      width: 258px;
+      width: 172px;
       height: 45px;
     }
   }

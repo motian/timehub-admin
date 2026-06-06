@@ -17,7 +17,7 @@ window.staticDomain = 'timehub-static.haocode.net';
 window.uploadDomain = 'up-z0.qiniup.com';
 window.appName = '拾光巷漫集';
 window.appIcon =
-  'https://timehub-static.haocode.net/Fv8qOWAoRcqM39tJ1dzihHuUjLhZ.jpeg';
+  'https://timehub-static.haocode.net/Fgkg_BBy9ke77e5v4aMSmIyTyOIA.png';
 
 const app = createApp(App);
 
