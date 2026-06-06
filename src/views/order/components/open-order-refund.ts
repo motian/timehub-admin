@@ -9,14 +9,16 @@ import OrderRefundModal from './order-refund-modal.vue';
 
 const openOrderRefundModal = modalCompFunctionalize(OrderRefundModal);
 
+type RefundFormData = {
+  orderNo: string;
+  refundAmount: number;
+  remark: string;
+};
+
 export default function openOrderRefund(options: {
   order: MOrder;
-  submitRefund: (data: {
-    orderNo: string;
-    refundAmount: number;
-    remark: string;
-  }) => Promise<void>;
-  onSuccess?: () => void | Promise<void>;
+  submitRefund: (data: RefundFormData) => Promise<void>;
+  onSuccess?: () => unknown | Promise<unknown>;
 }) {
   const { order, submitRefund, onSuccess } = options;
   if (isScheduleCancelAftersale(order.aftersale)) {
@@ -32,7 +34,7 @@ export default function openOrderRefund(options: {
     orderNo: order.orderNo,
     payAmount: Number(order.payAmount || 0),
     feeType: order.product?.feeType ?? 0,
-    onSubmit: async (data) => {
+    onSubmit: async (data: RefundFormData) => {
       await submitRefund(data);
       await onSuccess?.();
     },

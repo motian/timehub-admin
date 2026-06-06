@@ -29,7 +29,7 @@
   const { detail: formData, loadDetail, saveAdSlot } = useAdSlotApi();
   const { loadAllData: loadArticleOptions, loadDetail: loadArticleDetail } =
     useArticleApi();
-  const formConfig = getFormConfig(formData);
+  const formConfig = getFormConfig();
 
   const selectedArticleId = computed({
     get: () => {

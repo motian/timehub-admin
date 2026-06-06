@@ -19,6 +19,9 @@ export default class MOrderAftersale extends BaseModel {
   refundStatus = 0;
 
   @format('datetime', 'save')
+  createdAt = '';
+
+  @format('datetime', 'save')
   processAt = '';
 
   @format('datetime', 'save')
