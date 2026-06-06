@@ -10,6 +10,9 @@ export const PRODUCT_STATUS_OPTIONS = getOptions(['上架中', '已下架']);
 
 export const PRODUCT_FEE_TYPE_OPTIONS = getOptions(['免费', '收费']);
 
+/** 活动报名手机号短信验证：1 开启 2 关闭 */
+export const PRODUCT_SMS_VERIFY_OPTIONS = getOptions(['开启', '关闭']);
+
 export enum ProductStatus {
   ONLINE = 1,
   OFFLINE = 2,

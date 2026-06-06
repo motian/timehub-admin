@@ -5,7 +5,6 @@ export enum AdminRoleConfigType {
   Custom = 2,
 }
 
-/** type=0 超管、type=1 系统内置 */
 export function isBuiltinAdminRole(type: number) {
   return (
     type === AdminRoleConfigType.Super || type === AdminRoleConfigType.System

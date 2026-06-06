@@ -15,7 +15,9 @@
 
   const formRef = ref();
   const expandedKeys = ref<number[]>([]);
-  const isReadonly = computed(() => props.disabled);
+  const isReadonly = computed(
+    () => props.disabled || detail.value.type !== AdminRoleConfigType.Custom
+  );
 
   const menuTreeData = computed(() => {
     return allData.value.map((item) => ({

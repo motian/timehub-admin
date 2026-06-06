@@ -2,6 +2,7 @@ import {
   isActivityProduct,
   isCreditProduct,
   PRODUCT_FEE_TYPE_OPTIONS,
+  PRODUCT_SMS_VERIFY_OPTIONS,
   PRODUCT_TYPE_OPTIONS,
 } from '@/biz/const/product';
 import { getOptions } from '@/biz/const/common';
@@ -127,6 +128,21 @@ const getFormConfig = (formData: Ref<MProduct>) => {
             min: 0,
             precision: 0,
             placeholder: '0 表示不限制',
+          },
+          vIf: (product: MProduct) => isActivityProduct(product.type),
+        },
+        {
+          type: 'radio-group',
+          label: '手机号验证',
+          name: 'smsVerifyEnabled',
+          bindAttrs: {
+            options: PRODUCT_SMS_VERIFY_OPTIONS,
+          },
+          rules: {
+            type: 'number',
+            positive: true,
+            required: true,
+            message: '请选择是否开启手机号验证',
           },
           vIf: (product: MProduct) => isActivityProduct(product.type),
         },
