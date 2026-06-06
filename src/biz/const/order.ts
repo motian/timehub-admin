@@ -16,8 +16,8 @@ export const ORDER_STATUS_OPTIONS = [
   { label: '待核销', value: OrderStatus.PAID },
   { label: '部分核销', value: OrderStatus.PART_VERIFIED },
   { label: '已核销', value: OrderStatus.VERIFIED },
-  { label: '退款中', value: OrderStatus.AFTERSALE_ING },
-  { label: '已退款', value: OrderStatus.AFTERSALE_FINISHED },
+  { label: '售后中', value: OrderStatus.AFTERSALE_ING },
+  { label: '售后完成', value: OrderStatus.AFTERSALE_FINISHED },
 ];
 
 export enum OrderVerifyStatus {
@@ -90,4 +90,31 @@ export function canCancelAftersale(
     aftersale?.refundStatus === AftersaleRefundStatus.WAIT_ACCEPT &&
     !isScheduleCancelAftersale(aftersale)
   );
+}
+
+/**
+ * 是否可展示【提交退款】
+ * - 售后 refundStatus=20（退款中）：不可重复提交
+ * - 售后 refundStatus=40（退款失败）：允许重新发起（与后端一致）
+ */
+export function canSubmitRefund(
+  order?: {
+    status?: number;
+    aftersale?: { refundStatus?: number; type?: number } | null;
+  } | null
+) {
+  if (!order?.status || !isOrderRefundable(order.status)) {
+    return false;
+  }
+  if (isScheduleCancelAftersale(order.aftersale)) {
+    return false;
+  }
+  const refundStatus = order.aftersale?.refundStatus;
+  if (
+    refundStatus === AftersaleRefundStatus.REFUNDING ||
+    refundStatus === AftersaleRefundStatus.SUCCESS
+  ) {
+    return false;
+  }
+  return true;
 }

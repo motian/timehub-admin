@@ -2,8 +2,7 @@
   import {
     canCancelAftersale,
     getOrderListRefundActionLabel,
-    isOrderRefundable,
-    isScheduleCancelAftersale,
+    canSubmitRefund,
     ORDER_STATUS_OPTIONS,
     OrderStatus,
   } from '@/biz/const/order';
@@ -73,9 +72,7 @@
     });
   };
 
-  const showRefundBtn = (record: MOrder) =>
-    isOrderRefundable(record.status) &&
-    !isScheduleCancelAftersale(record.aftersale);
+  const showRefundBtn = (record: MOrder) => canSubmitRefund(record);
 
   const showCloseAftersaleBtn = (record: MOrder) =>
     canCancelAftersale(record.aftersale);

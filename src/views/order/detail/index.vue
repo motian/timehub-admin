@@ -4,8 +4,7 @@
     AFTERSALE_REFUND_STATUS_OPTIONS,
     canCancelAftersale,
     isFreeActivityOrder,
-    isOrderRefundable,
-    isScheduleCancelAftersale,
+    canSubmitRefund,
     ORDER_VERIFY_STATUS_OPTIONS,
   } from '@/biz/const/order';
   import useOrderApi from '@/biz/hooks/order/order';
@@ -89,10 +88,7 @@
       <template #extra>
         <a-space>
           <a-button
-            v-if="
-              isOrderRefundable(detail.status) &&
-              !isScheduleCancelAftersale(detail.aftersale)
-            "
+            v-if="canSubmitRefund(detail)"
             type="primary"
             status="warning"
             size="small"
